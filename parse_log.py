@@ -10,6 +10,7 @@ time_test = []
 oversample = False
 pca = False
 rpca = False
+mspca = False
 prefiltered = False
 train_size = 0
 pca_p = 0
@@ -38,6 +39,8 @@ with open(sys.argv[1], 'r') as f:
 			pca = ast.literal_eval(line[4:])
 		elif line.startswith('rpca '):
 			rpca = ast.literal_eval(line[5:])
+		elif line.startswith('mspca '):
+			mspca = ast.literal_eval(line[6:])
 		elif line.startswith('prefiltered '):
 			prefiltered = ast.literal_eval(line[12:])
 		elif line.startswith('train_size '):
@@ -65,7 +68,7 @@ a_val[2] = sum([l[-1] for l in fit_val_accuracy]) / n
 a_tst[0] = sum(test_accuracy) / n
 a_tst[1] = max(test_accuracy) if test_accuracy else 0
 
-print(sys.argv[1], layers, window, 'OVR' if oversample else '', 'PCA' if pca else '', 'RPCA' if rpca else '', 'PRE' if prefiltered else '')
+print(sys.argv[1], layers, window, 'OVR' if oversample else '', 'PCA' if pca else '', 'RPCA' if rpca else '', 'MSPCA' if mspca else '', 'PRE' if prefiltered else '')
 print(f'N {train_size}')
 print(f'p {pca_p}')
 print(f'spikes {spikes}')

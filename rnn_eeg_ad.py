@@ -14,7 +14,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.layers import LSTM, Dense, BatchNormalization, Softmax, Dropout, Bidirectional
-import scipy.io  # to load MAT files
+import scipy.io  # to load/save MAT files
 import time
 import datetime
 from matplotlib import pyplot as plt
@@ -22,6 +22,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 import sklearn.decomposition
 import sklearn.model_selection
 import sys
+import os
 # %matplotlib inline
 # %load_ext tensorboard
 
@@ -39,6 +40,8 @@ else:
   working_dir = '.'
 
 import r_pca
+#import mspca
+multiscale_pca = False  # Compute MSPCA before PCA
 
 log_dir_base = working_dir + '/logs/fit'
 
@@ -196,6 +199,14 @@ def pca_reduction(A, tol, comp = 0):
     norm_s = np.linalg.norm(S, ord='fro')  # for debug
     print('||A,L,S||:', np.linalg.norm(A, ord='fro'), np.linalg.norm(L, ord='fro'), np.linalg.norm(S, ord='fro'))
     #np.savez_compressed('rpca.npz', pre = A, post = L)
+  elif multiscale_pca:
+    print('MSPCA...')
+    #ms = mspca.MultiscalePCA()
+    #L = ms.fit_transform(A, wavelet_func='sym4', threshold=0.1, scale = True )
+    print('saving MAT file and calling Matlab...')
+    scipy.io.savemat('mspca.mat', {'A': A}, do_compression = True)
+    os.system('matlab -batch "mspca(\'mspca.mat\')"')
+    L = scipy.io.loadmat('mspca.mat')['L'] 
   else:
     L = A
   U, lam, V = np.linalg.svd(L, full_matrices = False)  # V is transposed
@@ -238,6 +249,7 @@ def train_session(save_model = False, load_model = None, write_report = True, fi
     print('oversample', oversample, file = out_f)
     print('pca', pca, file = out_f)
     print('rpca', rpca, file = out_f)
+    print('mspca', multiscale_pca, file = out_f)
     print('subj_train', permutation, file = out_f)
     print('epochs', epochs, file = out_f)
     if history is not None:
@@ -295,7 +307,7 @@ def train_session(save_model = False, load_model = None, write_report = True, fi
     #np.savez_compressed('x_data_train.npz', x_data_train = x_data_train)
     #print('x_data_train saved')
     if pca:
-      print('\nPerforming (R)PCA...')
+      print('\nPerforming (R)(MS)PCA...')
       x_data_train, Vpca = reduce_matrix(x_data_train, None)
       y_data_train = adjust_size(x_data_train, y_data_train)
       if x_data_val is not None:

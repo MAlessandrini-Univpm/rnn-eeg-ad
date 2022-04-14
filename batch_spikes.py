@@ -20,8 +20,9 @@ rnn.oversample = True
 rnn.pca = True
 rnn.window = 256
 rnn.overlap = rnn.window // 2
+rnn.multiscale_pca = False
 
-for rnn.spikes in (1/1000, 1/500, 1/200, 1/100, 1/50):
+for rnn.spikes in (1/1000, 1/500, 1/200, 1/100):
 	for rnn.rpca in (False,):
 		if rnn.decimation:
 			rnn.window //= rnn.decimation
