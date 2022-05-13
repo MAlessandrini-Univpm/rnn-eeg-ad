@@ -4,12 +4,23 @@ EEG-Based Alzheimer’s Disease Recognition Using Robust-PCA and LSTM Recurrent 
 This is the software used in the article:
 
 Alessandrini, M.; Biagetti, G.; Crippa, P.; Falaschetti, L.; Luzzi, S.; Turchetti, C. "EEG-Based Alzheimer’s Disease Recognition Using Robust-PCA
-and LSTM Recurrent Neural Network" (not published yet)
-
+and LSTM Recurrent Neural Network". Sensors 2022, 22, 3696. https://doi.org/10.3390/s22103696
 
 If you use this work, please cite the article:
 ```
-TODO
+@Article{s22103696,
+AUTHOR = {Alessandrini, Michele and Biagetti, Giorgio and Crippa, Paolo and Falaschetti, Laura and Luzzi, Simona and Turchetti, Claudio},
+TITLE = {EEG-Based Alzheimer&rsquo;s Disease Recognition Using Robust-PCA and LSTM Recurrent Neural Network},
+JOURNAL = {Sensors},
+VOLUME = {22},
+YEAR = {2022},
+NUMBER = {10},
+ARTICLE-NUMBER = {3696},
+URL = {https://www.mdpi.com/1424-8220/22/10/3696},
+ISSN = {1424-8220},
+ABSTRACT = {The use of electroencephalography (EEG) has recently grown as a means to diagnose neurodegenerative pathologies such as Alzheimer&rsquo;s disease (AD). AD recognition can benefit from machine learning methods that, compared with traditional manual diagnosis methods, have higher reliability and improved recognition accuracy, being able to manage large amounts of data. Nevertheless, machine learning methods may exhibit lower accuracies when faced with incomplete, corrupted, or otherwise missing data, so it is important do develop robust pre-processing techniques do deal with incomplete data. The aim of this paper is to develop an automatic classification method that can still work well with EEG data affected by artifacts, as can arise during the collection with, e.g., a wireless system that can lose packets. We show that a recurrent neural network (RNN) can operate successfully even in the case of significantly corrupted data, when it is pre-filtered by the robust principal component analysis (RPCA) algorithm. RPCA was selected because of its stated ability to remove outliers from the signal. To demonstrate this idea, we first develop an RNN which operates on EEG data, properly processed through traditional PCA; then, we use corrupted data as input and process them with RPCA to filter outlier components, showing that even with data corruption causing up to 20% erasures, the RPCA was able to increase the detection accuracy by about 5% with respect to the baseline PCA.},
+DOI = {10.3390/s22103696}
+}
 ```
 ## Code description
 
