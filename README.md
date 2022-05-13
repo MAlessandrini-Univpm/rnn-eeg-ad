@@ -10,7 +10,7 @@ If you use this work, please cite the article:
 ```
 @Article{s22103696,
 AUTHOR = {Alessandrini, Michele and Biagetti, Giorgio and Crippa, Paolo and Falaschetti, Laura and Luzzi, Simona and Turchetti, Claudio},
-TITLE = {EEG-Based Alzheimer&rsquo;s Disease Recognition Using Robust-PCA and LSTM Recurrent Neural Network},
+TITLE = {EEG-Based Alzheimer's Disease Recognition Using Robust-PCA and LSTM Recurrent Neural Network},
 JOURNAL = {Sensors},
 VOLUME = {22},
 YEAR = {2022},
